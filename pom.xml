@@ -37,12 +37,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 	<modules>
 		<module>itao-commons</module>
 		<module>itao-service</module>
-
-		
-		
 		<module>itao-web-admin</module>
 	</modules>
 </project>
