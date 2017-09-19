@@ -2,45 +2,101 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.leaf.itao</groupId>
+	<groupId>com.leafnet.itao</groupId>
 	<artifactId>itao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>itao</name>
-	<url>http://maven.apache.org</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<!-- jdk配置为1.8 -->
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	
 	<modules>
 		<module>itao-commons</module>
 		<module>itao-service</module>
 		<module>itao-web-admin</module>
 	</modules>
+
+	<properties>
+        <project.version>0.0.1</project.version>
+        
+        <mysql.connnect.version>5.1.38</mysql.connnect.version>
+        
+        <alibaba.druid.version>1.0.18</alibaba.druid.version>
+        <fastjson.version>1.2.31</fastjson.version>
+        
+        <mybatis.version>3.4.1</mybatis.version>
+        <mybatis.spring.version>1.3.0</mybatis.spring.version>
+        <mybatis.generator.version>1.3.5</mybatis.generator.version>
+        
+        <cglib.nodep.version>3.1</cglib.nodep.version>
+        <aspectj.version>1.8.9</aspectj.version>
+        
+        <servlet.version>3.1.0</servlet.version>
+        <jsp.version>2.3.1</jsp.version>
+        <jstl.version>1.2</jstl.version>
+        <spring.version>4.3.9.RELEASE</spring.version>
+        <spring.session.version>1.3.0.RELEASE</spring.session.version>
+        
+        <slf4j.version>1.7.21</slf4j.version>
+        <logback.version>1.1.7</logback.version>
+        
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons.codec.version>1.10</commons.codec.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-net.version>3.4</commons-net.version>
+        <commons.logging>1.2</commons.logging>
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        
+        <httpclient.version>4.3.6</httpclient.version>
+        
+        
+	</properties>
+
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<build>
+ 		<plugins>
+ 			<plugin>
+ 				<groupId>org.apache.maven.plugins</groupId>
+ 				<artifactId>maven-compiler-plugin</artifactId>
+ 				<configuration>
+ 					<source>1.8</source>
+ 					<target>1.8</target>
+ 				</configuration>
+ 			</plugin>
+ 		</plugins>
+ 		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+ 	</build>
+	
 </project>
