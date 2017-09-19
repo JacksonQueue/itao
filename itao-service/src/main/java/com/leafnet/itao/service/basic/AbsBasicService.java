@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.leafnet.htw.commons.bean.DBParam;
-import com.leafnet.htw.commons.bean.PageBean;
+import com.leafnet.itao.commons.bean.DBParam;
+import com.leafnet.itao.commons.bean.PageBean;
 import com.leafnet.itao.mapper.basic.BasicMapper;
 
 /**

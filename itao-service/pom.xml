@@ -13,10 +13,10 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.leafnet</groupId>
-			<artifactId>htw-commons</artifactId>
+			<groupId>com.leafnet.itao</groupId>
+			<artifactId>itao-commons</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency> 
 
 		<!-- Mysql连接驱动 -->
 		<dependency>

@@ -13,17 +13,18 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.leafnet</groupId>
-			<artifactId>htw-commons</artifactId>
+	    
+	    <dependency>
+			<groupId>com.leafnet.itao</groupId>
+			<artifactId>itao-commons</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.leafnet</groupId>
-			<artifactId>htw-service</artifactId>
+			<groupId>com.leafnet.itao</groupId>
+			<artifactId>itao-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
+		
 		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import com.leafnet.htw.commons.bean.DBParam;
-import com.leafnet.htw.commons.bean.PageBean;
+import com.leafnet.itao.commons.bean.DBParam;
+import com.leafnet.itao.commons.bean.PageBean;
 
 /**
  * 基础的Mapper操作
