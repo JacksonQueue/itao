@@ -1,5 +1,7 @@
 /.project
 /itao-commons/
+/itao-commons/target/
+/itao-commons/.settings/
 /itao-service/
 /itao-web-admin/
 
