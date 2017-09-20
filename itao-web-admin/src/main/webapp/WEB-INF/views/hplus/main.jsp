@@ -34,7 +34,7 @@
 							</ul>
 						</div>
 					</li>
-					<cjt:userMenuTag />
+					<!-- <cjt:userMenuTag /> -->
 				</ul>
 			</div>
 		</nav>
