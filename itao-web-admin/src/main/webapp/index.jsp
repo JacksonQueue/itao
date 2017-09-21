@@ -1,5 +1,8 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-<body>
-<h2>Hello World!</h2>
-</body>
+<head>
+<meta http-equiv="refresh" content="0;url=main.htm" />
+</head>
 </html>
