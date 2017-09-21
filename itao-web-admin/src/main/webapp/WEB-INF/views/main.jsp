@@ -1,11 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/inc/hplus/tld.inc"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@include file="/WEB-INF/inc/hplus/meta.inc"%>
 <title>叶子网络</title>
+<%@include file="/WEB-INF/inc/hplus/common_link.inc"%>
+<script type="text/javascript" src="${resPath}/hplus/js/metisMenu/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="${resPath}/hplus/js/slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="${resPath}/hplus/js/hplus.min.js"></script>
+<script type="text/javascript" src="${resPath}/hplus/js/contabs.js"></script>
+<script type="text/javascript" src="${resPath}/hplus/js/pace/pace.min.js"></script>
+<script type="text/javascript" src="${resPath}/hplus/js/sha1.min.js"></script>
+<script type="text/javascript">
+	//防止免登后嵌套页面.
+	if (self != top && top.layer) {
+		var index = top.layer.getFrameIndex(window.name);
+		top.layer.close(index);
+	}
+</script>
 </head>
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden">
+<body class="fixed-sidebar full-height-layout gray-bg"
+	style="overflow: hidden">
 	<div id="wrapper">
 		<!--左侧导航开始-->
 		<nav class="navbar-default navbar-static-side" role="navigation">
@@ -17,7 +33,8 @@
 					<li class="nav-header">
 						<div class="dropdown profile-element" style="text-align: center;">
 							<div>
-								<img alt="image" class="img-circle" style="height: 64px" src="${resPath }/img/sys_logo.jpg" />
+								<img alt="image" class="img-circle" style="height: 64px"
+									src="${resPath }/hplus/img/sys_logo.jpg" />
 							</div>
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<div class="clear">
@@ -27,10 +44,10 @@
 								</div>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
-								<li><a class="J_menuItem" href="javascript:;">个人资料</a></li>
-								<li><a class="J_menuItem" href="javascript:;">修改密码</a></li>
+								<li><a class="J_menuItem" href="sys/userInfo.htm">个人资料</a></li>
+								<li><a class="J_menuItem" href="sys/changePage.htm">修改密码</a></li>
 								<li class="divider"></li>
-								<li><a href="javascript:;">安全退出</a></li>
+								<li><a href="<c:url value="/auth/logout.htm" />">安全退出</a></li>
 							</ul>
 						</div>
 					</li>
@@ -66,11 +83,13 @@
 						<li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
 					</ul>
 				</div>
-				<a href="javascript:;" class="roll-nav roll-right J_tabExit"><i
-					class="fa fa-sign-out"></i> 退出</a>
+				<a href="<c:url value="/auth/logout.htm" />"
+					class="roll-nav roll-right J_tabExit"><i class="fa fa-sign-out"></i>
+					退出</a>
 			</div>
 			<div class="row J_mainContent" id="content-main"></div>
 		</div>
 		<!--右侧部分结束-->
 	</div>
+</body>
 </html>

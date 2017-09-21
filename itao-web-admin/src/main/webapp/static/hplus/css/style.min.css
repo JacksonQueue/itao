@@ -54,3 +54,7 @@ h1,h2,h3,h4,h5,h6{font-weight:100}h1{font-size:30px}h2{font-size:24px}h3{font-si
   border-color: rgb(26, 179, 148);
   color: rgb(255, 255, 255);
 }
+
+.ibox-content form .checkbox-inline label{
+  margin-right: 30px;
+}

@@ -4,10 +4,29 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>itao-web-admin</display-name>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>all files</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+	
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>leaf.admin.root</param-value>
+		<param-value>itao.admin.root</param-value>
 	</context-param>
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>dev</param-value>
+	</context-param>
+	
 	<context-param>
 		<description>Spring配置文件</description>
 		<param-name>contextConfigLocation</param-name>
@@ -25,6 +44,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
+	
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -42,6 +62,41 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+	
+	<!-- <filter>
+		<filter-name>springSessionRepositoryFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter> -->
+	
+	<!-- 定义url被哪个filter过滤，下面的配置表示所有的请求都必须经过springSessionRepositoryFilter  -->
+	<!-- <filter-mapping>
+		<filter-name>springSessionRepositoryFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.jpeg</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping> -->
+	
+	<!-- WebStatFilter用于采集web-jdbc关联监控的数据  -->
+	<filter>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+		<!-- <init-param>
+			<param-name>principalSessionName</param-name>
+			<param-value>jph:cur-user</param-value>
+		</init-param> -->
+		<init-param>
+			<param-name>profileEnable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
 	<servlet>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -57,8 +112,10 @@
 		<url-pattern>*.do</url-pattern>
 		<url-pattern>*.jpeg</url-pattern>
 	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
 </web-app>

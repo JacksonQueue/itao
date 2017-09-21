@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-    
-    <!-- Bean扫描目录 -->
-	<context:component-scan base-package="com.leafnet.itao">
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+				http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd"
+	default-autowire="byName">
+
+
+	<!-- Bean扫描目录 -->
+	<context:component-scan base-package="com.leafnet">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
-	
-	<import resource="classpath:/spring/spring-mybatis.xml"/>
-	
+
+	<import resource="classpath*:/spring/spring-config-service.xml" />
+
+	<bean id="cookieSerializer"
+		class="org.springframework.session.web.http.DefaultCookieSerializer">
+		<property name="cookiePath" value="/" />
+		<property name="cookieName" value="admin_ticket_id" />
+	</bean>
+
+	<bean id="cookieHttpSessionStrategy"
+		class="org.springframework.session.web.http.CookieHttpSessionStrategy">
+		<property name="cookieSerializer" ref="cookieSerializer" />
+	</bean>
+
+	<beans profile="dev">
+		<bean id="mapSessionRepository" class="org.springframework.session.MapSessionRepository">
+			<property name="defaultMaxInactiveInterval" value="#{60*30}" />
+		</bean>
+		<!-- 
+		  SessionRepositoryFilter：过滤器，在spring-session中起着重要作用，提供了对request/response的转换，使httpSession和session建立关联。
+		     这样用户直接使用httpSession就间接达成了对session的操作。注意的是，这个filter必须是放在任何用在session之前的
+		 -->
+		<bean id="springSessionRepositoryFilter"
+			class="org.springframework.session.web.http.SessionRepositoryFilter">
+			<constructor-arg ref="mapSessionRepository" />
+			<property name="httpSessionStrategy" ref="cookieHttpSessionStrategy" />
+		</bean>
+	</beans>
+
 </beans>
