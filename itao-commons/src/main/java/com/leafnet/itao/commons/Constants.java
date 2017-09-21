@@ -12,7 +12,7 @@ public interface Constants {
 	public static final String DOT = ".";
 	public static final String EQ = "=";
 	public static final String AND = "&";
-
+	
 	/**
 	 * 默认字符编码
 	 */
@@ -28,4 +28,9 @@ public interface Constants {
 	 * 返回地址
 	 */
 	final static String REQ_NEXT_URL = "nextURL";
+	
+	/**
+	 * 当前用户
+	 */
+    final static String CURRENT_USER = "itao:cur-user";
 }

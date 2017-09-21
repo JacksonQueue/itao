@@ -47,6 +47,7 @@
         
         <httpclient.version>4.3.6</httpclient.version>
         
+        <kaptcha.version>0.0.9</kaptcha.version>
         
 	</properties>
 
