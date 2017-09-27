@@ -48,7 +48,6 @@ public class GeneratorCodeMain {
 	}
 
 	public static void main(String[] args) throws Exception {
-
 		/**
 		 * 初始化环境变量
 		 */
