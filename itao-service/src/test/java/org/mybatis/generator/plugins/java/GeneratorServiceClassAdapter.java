@@ -46,6 +46,7 @@ public class GeneratorServiceClassAdapter extends AbsJavaGenerator {
 
 		serviceClass.addAnnotation("@Service");
 		serviceClass.addImportedType(new FullyQualifiedJavaType("org.springframework.stereotype.Service"));
+		serviceClass.addImportedType(new FullyQualifiedJavaType("com.leafnet.itao.service.basic.AbsBasicService"));
 
 		writeFile(serviceClass.getFormattedContent(), serviceClass.getType().getShortName());
 		return Collections.emptyList();

@@ -19,14 +19,15 @@ import com.leafnet.itao.mapper.basic.BasicMapper;
  * @author Wangd
  */
 public class GeneratorMapperPlugin extends PluginAdapter {
-
+	
 	@Override
 	public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-		FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType(BasicMapper.class.getName());
+		FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType("BasicMapper");
 		superInterface.addTypeArgument(new FullyQualifiedJavaType(introspectedTable.getBaseRecordType()));
 
 		interfaze.getMethods().clear();
-		interfaze.addImportedType(superInterface);
+		FullyQualifiedJavaType importSuperInterface = new FullyQualifiedJavaType(BasicMapper.class.getName());
+		interfaze.addImportedType(importSuperInterface);
 
 		interfaze.getSuperInterfaceTypes().add(superInterface);
 
@@ -51,8 +52,9 @@ public class GeneratorMapperPlugin extends PluginAdapter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return super.clientGenerated(interfaze, topLevelClass, introspectedTable);
+		
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class GeneratorControllerClassAdapter extends AbsJavaGenerator {
 		String contextPackage = "org.springframework.context.annotation.";
 		FullyQualifiedJavaType acopeAnnotation = new FullyQualifiedJavaType(contextPackage + "Scope");
 		controllerClass.addAnnotation("@" + acopeAnnotation.getShortName() + "(BeanHolder.SCOPE_PROTOTYPE)");
-		controllerClass.addImportedType(new FullyQualifiedJavaType("com.fosun.izhuan.utils.holder.BeanHolder"));
+		controllerClass.addImportedType(new FullyQualifiedJavaType("com.leafnet.itao.commons.BeanHolder"));
 		controllerClass.addImportedType(acopeAnnotation);
 
 		/**

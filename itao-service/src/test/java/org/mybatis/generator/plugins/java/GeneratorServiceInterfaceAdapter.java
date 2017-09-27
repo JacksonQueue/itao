@@ -37,6 +37,7 @@ public class GeneratorServiceInterfaceAdapter extends AbsJavaGenerator {
 		rootInterface.addTypeArgument(modelType);
 		serviceInterface.addSuperInterface(rootInterface);
 		serviceInterface.addImportedType(rootInterface);
+		serviceInterface.addImportedType(new FullyQualifiedJavaType("com.leafnet.itao.service.basic.IBasicService"));
 		writeFile(serviceInterface.getFormattedContent(), serviceInterface.getType().getShortName());
 		return Collections.emptyList();
 	}

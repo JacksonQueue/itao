@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leafnet.itao.mapper.sys.SysManagerUserMapper">
+  
+  <!-- 基础字段映射 -->
+  <resultMap id="BaseResultMap" type="com.leafnet.itao.model.sys.SysManagerUser">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+    <result column="user_status" jdbcType="VARCHAR" property="userStatus" />
+    <result column="is_locked" jdbcType="BIT" property="isLocked" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
+    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+  </resultMap>
+  
+  <!-- 表字段,提供给其他单表查询的SQL引用 -->
+  <sql id="BaseQueryColumList">
+    user_id, user_name, password, name, email, tel, mobile, dept_id, user_status, is_locked, 
+    remark, creator, create_time, last_modifier, last_modify_time
+  </sql>
+  
+  <!-- 基础的查询条件,提供给其他单表查询的SQL引用 -->
+  <sql id="BaseQueryWhere">
+    where 1=1
+    <if test="userId != null">
+      and user_id = #{userId,jdbcType=VARCHAR}
+    </if>
+  </sql>
+  
+  <!-- 单表的查询语句,提供给其他单表查询的SQL引用 -->
+  <sql id="BaseQuerySql">
+    select
+    <include refid="BaseQueryColumList" />
+    from sm_user
+    <include refid="BaseQueryWhere" />
+  </sql>
+  
+  <select id="queryUniqueById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="BaseQueryColumList" />
+    from sm_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="queryListByParam" parameterType="map" resultMap="BaseResultMap">
+    <include refid="CommonMapper.Base_Pagination_Prefix" />
+    <include refid="BaseQuerySql" />
+    <include refid="CommonMapper.Base_Pagination_Suffix" />
+  </select>
+  
+  <select id="queryCountByParam" parameterType="map" resultType="long">
+    select count(*) from (
+    <include refid="BaseQuerySql" />
+    ) t
+  </select>
+  
+  <insert id="insert" parameterType="com.leafnet.itao.model.sys.SysManagerUser">
+    <selectKey keyProperty="userId" order="BEFORE" resultType="java.lang.String">
+      select uuid_short()
+    </selectKey>
+    insert into sm_user (user_id, user_name, password, 
+      name, email, tel, mobile, 
+      dept_id, user_status, is_locked, 
+      remark, creator, create_time, 
+      last_modifier, last_modify_time)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{userStatus,jdbcType=VARCHAR}, #{isLocked,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastModifier,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <update id="update" parameterType="com.leafnet.itao.model.sys.SysManagerUser">
+    update sm_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=VARCHAR},
+      is_locked = #{isLocked,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_modifier = #{lastModifier,jdbcType=VARCHAR},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteByParam" parameterType="map">
+    delete from sm_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+</mapper>
