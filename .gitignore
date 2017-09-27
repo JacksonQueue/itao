@@ -26,6 +26,7 @@ rebel.xml
 .DS_Store
 /itao-service/src/main/resources/*/*.properties
 /itao-service/src/main/resources/*/*.xml
+/itao-service/src/test/java/*.*
 /itao-service/sql/*.sql
 /itao-web-admin/src/main/resources/*/*.properties
 /itao-web-admin/src/main/resources/*/*.xml
